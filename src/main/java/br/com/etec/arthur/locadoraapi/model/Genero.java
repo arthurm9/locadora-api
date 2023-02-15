@@ -1,18 +1,19 @@
 package br.com.etec.arthur.locadoraapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
-@Table(name="ator")
-public class Ator {
+@Table(name="genero")
+public class Genero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String nomeator;
+    private String descricao;
 
     // getter and setter
     public Long getId() {
@@ -21,11 +22,11 @@ public class Ator {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getNomeAtor() {
-        return nomeator;
+    public String getDescricao() {
+        return descricao;
     }
-    public void setNomeAtor(String nomeAtor) {
-        this.nomeator = nomeAtor;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     // equals and hash code
@@ -33,8 +34,8 @@ public class Ator {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Ator ator = (Ator) o;
-        return id.equals(ator.id);
+        Genero genero = (Genero) o;
+        return id.equals(genero.id);
     }
     @Override
     public int hashCode() {
@@ -42,7 +43,7 @@ public class Ator {
     }
 
     @JsonIgnore
-    @OneToMany(mappedBy = "ator")
+    @OneToMany(mappedBy = "genero")
     private List<Filme> filmes = new ArrayList<>();
 
     public List<Filme> getFilmes() {
@@ -52,6 +53,4 @@ public class Ator {
     public void setFilmes(List<Filme> alunos) {
         this.filmes = filmes;
     }
-
 }
-

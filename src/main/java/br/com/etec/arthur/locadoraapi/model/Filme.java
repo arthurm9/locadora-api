@@ -1,11 +1,17 @@
 package br.com.etec.arthur.locadoraapi.model;
 
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.*;
 
+@Entity
+@Table(name="filme")
 public class Filme {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String nomeFilme;
+    private String nomefilme;
 
     // getter and setter
     public Integer getId() {
@@ -15,10 +21,10 @@ public class Filme {
         this.id = id;
     }
     public String getNomeFilme() {
-        return nomeFilme;
+        return nomefilme;
     }
     public void setNomeFilme(String nomeFilme) {
-        this.nomeFilme = nomeFilme;
+        this.nomefilme = nomeFilme;
     }
 
     // equals and hash code
@@ -34,12 +40,27 @@ public class Filme {
         return Objects.hash(id);
     }
 
-    /*
+    @ManyToOne
+    @JoinColumn(name="generoid")
+    private Genero genero;
 
-    foreign keys
+    public Genero getGenero() {
+        return genero;
+    }
 
-    private Integer idGenero;
-    private Integer idAtop
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
 
-     */
+    @ManyToOne
+    @JoinColumn(name="atorid")
+    private Ator ator;
+
+    public Ator getAtor() {
+        return ator;
+    }
+
+    public void setAtor(Ator ator) {
+        this.ator = ator;
+    }
 }
