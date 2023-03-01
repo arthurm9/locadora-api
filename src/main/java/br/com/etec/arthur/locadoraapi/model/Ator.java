@@ -10,36 +10,9 @@ public class Ator {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String nomeator;
-
-    // getter and setter
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getNomeAtor() {
-        return nomeator;
-    }
-    public void setNomeAtor(String nomeAtor) {
-        this.nomeator = nomeAtor;
-    }
-
-    // equals and hash code
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Ator ator = (Ator) o;
-        return id.equals(ator.id);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 
     @JsonIgnore
     @OneToMany(mappedBy = "ator")
@@ -53,5 +26,30 @@ public class Ator {
         this.filmes = filmes;
     }
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getNomeator() {
+        return nomeator;
+    }
+    public void setNomeator(String nomeator) {
+        this.nomeator = nomeator;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ator ator = (Ator) o;
+        return id.equals(ator.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }
 

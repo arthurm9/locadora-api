@@ -9,36 +9,9 @@ public class Filme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String nomefilme;
-
-    // getter and setter
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getNomeFilme() {
-        return nomefilme;
-    }
-    public void setNomeFilme(String nomeFilme) {
-        this.nomefilme = nomeFilme;
-    }
-
-    // equals and hash code
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Filme filme = (Filme) o;
-        return id.equals(filme.id);
-    }
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 
     @ManyToOne
     @JoinColumn(name="generoid")
@@ -62,5 +35,30 @@ public class Filme {
 
     public void setAtor(Ator ator) {
         this.ator = ator;
+    }
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getNomefilme() {
+        return nomefilme;
+    }
+    public void setNomefilme(String nomefilme) {
+        this.nomefilme = nomefilme;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Filme filme = (Filme) o;
+        return id.equals(filme.id);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

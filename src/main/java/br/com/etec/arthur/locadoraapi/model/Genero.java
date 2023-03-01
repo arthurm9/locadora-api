@@ -11,25 +11,22 @@ public class Genero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String descricao;
 
-    // getter and setter
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    @JsonIgnore
+    @OneToMany(mappedBy = "genero")
+    private List<Filme> filmes = new ArrayList<>();
+
+    public List<Filme> getFilmes() {
+        return filmes;
     }
 
-    // equals and hash code
+    public void setFilmes(List<Filme> alunos) {
+        this.filmes = filmes;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -42,15 +39,16 @@ public class Genero {
         return Objects.hash(id);
     }
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "genero")
-    private List<Filme> filmes = new ArrayList<>();
-
-    public List<Filme> getFilmes() {
-        return filmes;
+    public Integer getId() {
+        return id;
     }
-
-    public void setFilmes(List<Filme> alunos) {
-        this.filmes = filmes;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
