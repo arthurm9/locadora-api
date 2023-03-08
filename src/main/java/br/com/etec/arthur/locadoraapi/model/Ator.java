@@ -14,7 +14,7 @@ public class Ator {
 
     @JsonIgnore
     @OneToMany(mappedBy = "ator")
-    private List<Filme> filmes = new ArrayList<>();
+    private List<Filme> filmesator = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -28,11 +28,11 @@ public class Ator {
     public void setNomeator(String nomeator) {
         this.nomeator = nomeator;
     }
-    public List<Filme> getFilmes() {
-        return filmes;
+    public List<Filme> getFilmesator() {
+        return filmesator;
     }
-    public void setFilmes(List<Filme> alunos) {
-        this.filmes = filmes;
+    public void setFilmesator(List<Filme> filmesator) {
+        this.filmesator = filmesator;
     }
 
     @Override

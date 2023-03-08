@@ -14,7 +14,7 @@ public class Genero {
 
     @JsonIgnore
     @OneToMany(mappedBy = "genero")
-    private List<Filme> filmes = new ArrayList<>();
+    private List<Filme> filmesgenero = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -28,11 +28,11 @@ public class Genero {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-    public List<Filme> getFilmes() {
-        return filmes;
+    public List<Filme> getFilmesgenero() {
+        return filmesgenero;
     }
-    public void setFilmes(List<Filme> alunos) {
-        this.filmes = filmes;
+    public void setFilmesgenero(List<Filme> filmesgenero) {
+        this.filmesgenero = filmesgenero;
     }
 
     @Override
