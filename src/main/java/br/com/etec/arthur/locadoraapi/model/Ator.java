@@ -7,24 +7,14 @@ import java.util.*;
 @Entity
 @Table(name="ator")
 public class Ator {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String nomeator;
 
     @JsonIgnore
     @OneToMany(mappedBy = "ator")
     private List<Filme> filmes = new ArrayList<>();
-
-    public List<Filme> getFilmes() {
-        return filmes;
-    }
-
-    public void setFilmes(List<Filme> alunos) {
-        this.filmes = filmes;
-    }
 
     public Integer getId() {
         return id;
@@ -38,6 +28,12 @@ public class Ator {
     public void setNomeator(String nomeator) {
         this.nomeator = nomeator;
     }
+    public List<Filme> getFilmes() {
+        return filmes;
+    }
+    public void setFilmes(List<Filme> alunos) {
+        this.filmes = filmes;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -46,10 +42,8 @@ public class Ator {
         Ator ator = (Ator) o;
         return id.equals(ator.id);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id);
     }
 }
-

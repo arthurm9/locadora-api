@@ -1,28 +1,36 @@
 package br.com.etec.arthur.locadoraapi.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name="genero")
 public class Genero {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String descricao;
 
     @JsonIgnore
     @OneToMany(mappedBy = "genero")
     private List<Filme> filmes = new ArrayList<>();
 
+    public Integer getId() {
+        return id;
+    }
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    public String getDescricao() {
+        return descricao;
+    }
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
     public List<Filme> getFilmes() {
         return filmes;
     }
-
     public void setFilmes(List<Filme> alunos) {
         this.filmes = filmes;
     }
@@ -37,18 +45,5 @@ public class Genero {
     @Override
     public int hashCode() {
         return Objects.hash(id);
-    }
-
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-    public String getDescricao() {
-        return descricao;
-    }
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 }
