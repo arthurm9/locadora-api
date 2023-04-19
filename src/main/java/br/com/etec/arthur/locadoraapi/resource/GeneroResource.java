@@ -14,7 +14,7 @@ public class GeneroResource {
 
     @GetMapping("/todos")
     public List<Genero> listarTodosGeneros() {
-        return generoRepository.findAll();
+        return generoRepository.findAll(Sort.by("descricao").ascending());
     }
 
     // teste http: localhost:8080/generos/todos
