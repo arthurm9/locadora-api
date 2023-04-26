@@ -3,6 +3,7 @@ package br.com.etec.arthur.locadoraapi.resource;
 import br.com.etec.arthur.locadoraapi.model.Filme;
 import br.com.etec.arthur.locadoraapi.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,8 +15,6 @@ public class FilmeResource {
 
     @GetMapping("/todos")
     public List<Filme> listarTodosFilmes() {
-        return filmeRepository.findAll(); // .findAll() funciona como o select
+        return filmeRepository.findAll(Sort.by("genero").ascending());
     }
-
-    // teste http localhost:8080/filmes/todos
 }

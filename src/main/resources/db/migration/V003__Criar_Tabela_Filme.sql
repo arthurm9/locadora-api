@@ -1,4 +1,4 @@
-CREATE TABLE filme (
+CREATE TABLE IF NOT EXISTS filme (
     id INT NOT NULL AUTO_INCREMENT,
     nomefilme VARCHAR(255),
     atorid INT NOT NULL,

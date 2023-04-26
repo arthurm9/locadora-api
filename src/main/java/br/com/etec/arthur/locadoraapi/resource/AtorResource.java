@@ -17,6 +17,4 @@ public class AtorResource {
     public List<Ator> listarTodosAtores() {
         return atorRepository.findAll();
     }
-
-    // teste http: localhost:8080/atores/todos
 }
