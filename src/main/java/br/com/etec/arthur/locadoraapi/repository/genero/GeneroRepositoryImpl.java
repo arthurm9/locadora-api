@@ -20,7 +20,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     public Page<Genero> filtrarGenero(GeneroFilter generoFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Genero> criteria = builder.createQuery(Genero.class); // criar consulta de gêneros
-        Root<Genero> root = criteria.from(Genero.class);
+        Root<Genero> root = criteria.from(Genero.class); // "select from" da classe
         return null;
     }
 }
