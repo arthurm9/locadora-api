@@ -38,7 +38,8 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     private Predicate[] criarRestricoes(GeneroFilter generoFilter, CriteriaBuilder builder, Root<Genero> root) {
         List<Predicate> predicates = new ArrayList<>();
         if(!StringUtils.isEmpty(generoFilter.getDescricao())){ // importar do apache lang3
-            
+            predicates.add(builder.like(builder.lower(root.get("descricao")),
+                                        "%" + generoFilter.getDescricao().toLowerCase() + "%"));
         }
         return null;
     }
