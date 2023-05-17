@@ -22,7 +22,8 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Genero> criteria = builder.createQuery(Genero.class); // criar consulta de gêneros
         Root<Genero> root = criteria.from(Genero.class); // "select from" da classe
-        Predicate[] predicates = criarRestricoes(generoFilter, builder, root);
+        Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
+        criteria.where(predicates);
         return null;
     }
 }
