@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
@@ -22,9 +23,12 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Genero> criteria = builder.createQuery(Genero.class); // criar consulta de gêneros
         Root<Genero> root = criteria.from(Genero.class); // "select from" da classe
+
         Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
         criteria.where(predicates);
         criteria.orderBy(builder.asc(root.get("descicao")));
+
+        TypedQuery<Genero> query = manager.createQuery(criteria);
         return null;
     }
 }
