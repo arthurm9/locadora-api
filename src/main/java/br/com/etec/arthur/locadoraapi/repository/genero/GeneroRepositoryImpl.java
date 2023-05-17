@@ -41,6 +41,6 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
             predicates.add(builder.like(builder.lower(root.get("descricao")),
                                         "%" + generoFilter.getDescricao().toLowerCase() + "%"));
         }
-        return null;
+        return predicates.toArray((new Predicate[predicates.size()]));
     }
 }
