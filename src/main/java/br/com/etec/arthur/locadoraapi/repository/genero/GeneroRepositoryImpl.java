@@ -31,4 +31,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         TypedQuery<Genero> query = manager.createQuery(criteria);
         return null;
     }
+
+    private Predicate[] criarRestricoes(GeneroFilter generoFilter, CriteriaBuilder builder, Root<Genero> root) {
+    }
 }
