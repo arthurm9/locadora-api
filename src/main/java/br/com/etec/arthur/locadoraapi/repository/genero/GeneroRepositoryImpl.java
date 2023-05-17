@@ -24,6 +24,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         Root<Genero> root = criteria.from(Genero.class); // "select from" da classe
         Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
         criteria.where(predicates);
+        criteria.orderBy(builder.asc(root.get("descicao")));
         return null;
     }
 }
