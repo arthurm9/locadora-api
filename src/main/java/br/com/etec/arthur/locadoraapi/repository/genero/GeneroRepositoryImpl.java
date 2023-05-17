@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     // preparação do criteria
@@ -19,6 +20,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     public Page<Genero> filtrarGenero(GeneroFilter generoFilter, Pageable pageable) {
         CriteriaBuilder builder = manager.getCriteriaBuilder();
         CriteriaQuery<Genero> criteria = builder.createQuery(Genero.class); // criar consulta de gêneros
+        Root<Genero> root = criteria.from(Genero.class);
         return null;
     }
 }
