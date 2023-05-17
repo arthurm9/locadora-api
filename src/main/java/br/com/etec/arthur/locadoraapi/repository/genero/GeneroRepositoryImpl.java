@@ -2,6 +2,7 @@ package br.com.etec.arthur.locadoraapi.repository.genero;
 
 import br.com.etec.arthur.locadoraapi.model.Genero;
 import br.com.etec.arthur.locadoraapi.repository.filter.GeneroFilter;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -12,6 +13,8 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     // preparação do criteria
@@ -28,10 +31,15 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         criteria.where(predicates);
         criteria.orderBy(builder.asc(root.get("descicao")));
 
-        TypedQuery<Genero> query = manager.createQuery(criteria);
+        TypedQuery<Genero> query = manager.createQuery(criteria); // sei la
         return null;
     }
 
     private Predicate[] criarRestricoes(GeneroFilter generoFilter, CriteriaBuilder builder, Root<Genero> root) {
+        List<Predicate> predicates = new ArrayList<>();
+        if(!StringUtils.isEmpty(generoFilter.getDescricao())){ // importar do apache lang3
+            
+        }
+        return null;
     }
 }
