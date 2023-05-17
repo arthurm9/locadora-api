@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
 
 public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
     // preparação do criteria
@@ -15,6 +16,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
 
     @Override
     public Page<Genero> filtrarGenero(GeneroFilter generoFilter, Pageable pageable) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
         return null;
     }
 }
