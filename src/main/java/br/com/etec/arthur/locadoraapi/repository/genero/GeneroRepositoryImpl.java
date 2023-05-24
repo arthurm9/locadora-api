@@ -4,6 +4,7 @@ import br.com.etec.arthur.locadoraapi.model.Genero;
 import br.com.etec.arthur.locadoraapi.repository.filter.GeneroFilter;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import javax.persistence.EntityManager;
@@ -31,8 +32,31 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
         criteria.where(predicates);
         criteria.orderBy(builder.asc(root.get("descicao")));
 
-        TypedQuery<Genero> query = manager.createQuery(criteria); // sei la
-        return null;
+        TypedQuery<Genero> query = manager.createQuery(criteria); // depois de tipado se torna sql
+        adicionarRestricoesDePaginacao(query, pageable);
+        return new PageImpl<>(query.getResultList(), pageable, total(generoFilter));
+    }
+
+    private Long total(GeneroFilter generoFilter) {
+        CriteriaBuilder builder = manager.getCriteriaBuilder();
+        CriteriaQuery<Long> criteria = builder.createQuery(Long.class); // criar consulta de gêneros
+        Root<Genero> root = criteria.from(Genero.class); // "select from" da classe
+
+        Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
+        criteria.where(predicates);
+        criteria.orderBy(builder.asc(root.get("descicao")));    
+
+        criteria.select(builder.count(root));
+        return manager.createQuery(criteria).getSingleResult(); // retorna uma quantidade específica de resultados
+    }
+
+    private void adicionarRestricoesDePaginacao(TypedQuery<?> query, Pageable pageable) {
+        int paginaAtual = pageable.getPageNumber();
+        int totalRegistrosPorPagina = pageable.getPageSize();
+        int primeiroRegistroDaPagina = paginaAtual * totalRegistrosPorPagina;
+
+        query.setFirstResult(primeiroRegistroDaPagina);
+        query.setMaxResults(totalRegistrosPorPagina);
     }
 
     private Predicate[] criarRestricoes(GeneroFilter generoFilter, CriteriaBuilder builder, Root<Genero> root) {
