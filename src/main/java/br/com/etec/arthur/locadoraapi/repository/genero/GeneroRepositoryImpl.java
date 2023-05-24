@@ -30,7 +30,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
 
         Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
         criteria.where(predicates);
-        criteria.orderBy(builder.asc(root.get("descicao")));
+        criteria.orderBy(builder.asc(root.get("descricao")));
 
         TypedQuery<Genero> query = manager.createQuery(criteria); // depois de tipado se torna sql
         adicionarRestricoesDePaginacao(query, pageable);
@@ -44,7 +44,7 @@ public class GeneroRepositoryImpl implements GeneroRepositoryQuery{
 
         Predicate[] predicates = criarRestricoes(generoFilter, builder, root); // instancia o método de restrição
         criteria.where(predicates);
-        criteria.orderBy(builder.asc(root.get("descicao")));
+        criteria.orderBy(builder.asc(root.get("descricao")));
 
         criteria.select(builder.count(root));
         return manager.createQuery(criteria).getSingleResult(); // retorna uma quantidade específica de resultados

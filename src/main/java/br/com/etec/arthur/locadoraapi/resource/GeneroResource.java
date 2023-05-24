@@ -25,4 +25,6 @@ public class GeneroResource {
     public Page<Genero> pesquisar(GeneroFilter generoFilter, Pageable pageable){
         return generoRepository.filtrarGenero(generoFilter, pageable);
     }
+
+    // localhost:8080/generos?size=1&descricao=Ação
 }
